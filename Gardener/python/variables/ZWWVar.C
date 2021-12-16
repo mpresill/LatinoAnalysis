@@ -94,6 +94,7 @@ class ZWW{
     std::vector<float> jetEta_;
     std::vector<float> jetPhi_;
     std::vector<float> jetM_;
+    std::vector<float> jetTag_;
     float met_;
     float metPhi_;
     float st_;
@@ -144,6 +145,7 @@ void ZWW::reset(){
     jetEta_.clear();
     jetPhi_.clear();
     jetM_.  clear();
+    jetTag_.clear();
     met_          = zwwDefault;
     metPhi_       = zwwDefault;
     njet_         = zwwDefault;
@@ -191,6 +193,7 @@ void ZWW::isJetOk(){
     // check the validity of inputi
     if (jetPt_.size() == jetEta_.size() &&
         jetPt_.size() == jetPhi_.size() &&
+        jetPt_.size() == jetTag_.size() &&
         jetPt_.size() == jetM_.size()){
         isJetOk_ = true;
     }
@@ -245,11 +248,13 @@ void ZWW::setLepton(std::vector<float> pt,
 void ZWW::setJet(std::vector<float> pt,
                  std::vector<float> eta,
                  std::vector<float> phi,
-                 std::vector<float> mass){
+                 std::vector<float> mass,
+                 std::vector<float> tag){
     jetPt_ = pt;
     jetEta_= eta;
     jetPhi_= phi;
     jetM_  = mass;
+    jetTag_= tag;
     isJetOk();
 }
 
